@@ -4,33 +4,30 @@ import java.util.Objects;
 
 public class Employee {
 
-    private final Employee firstName;
-    private final Employee lastName;
+    private final String firstName;
+    private final String lastName;
 
-    public Employee(Employee firstName, Employee lastName) {
+    public Employee(String firstName, String lastName) {
        this.firstName = firstName;
         this.lastName = lastName;
 
-        firstName = firstName;
-        lastName = lastName;
-
     }
 
-    public Employee getFirstName() {
-        return firstName;
+    public String getFirstName() {
+        return this.firstName;
     }
 
 
-    public Employee getLastName() {
+    public String getLastName() {
 
         return this.lastName;
     }
 
 
-//    @Override
-//    public String toString() {
-//        return firstName + ' ' + lastName;
-//    }
+    @Override
+    public String toString() {
+        return firstName + ' ' + lastName;
+    }
 
     @Override
     public boolean equals(Object o) {

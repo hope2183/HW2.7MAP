@@ -23,24 +23,26 @@ public class EmployeeMapController {
     }
 
     @GetMapping("/add")
-    public Employee addToEmployeeBook(@RequestParam("id") Integer id, @RequestParam("firstName") Employee firstName, @RequestParam("lastName") Employee lastName) {
-        return employeeMapService.addToEmployeeBook(id, firstName, lastName);
+    public String addToEmployeeBook(@RequestParam("id") Integer id, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
+    //employeeMapService.addToEmployeeBook(id, firstName, lastName);
+        return "Employee: ID " + id+" "+employeeMapService.addToEmployeeBook(id,firstName,lastName)+ " successfully added";
+
+    }
+    @GetMapping("/remove")
+    public String removeFromEmployeeList(@RequestParam("id") Integer id) {
+        return "EMPLOYEE: ID "+id+" "+employeeMapService.removeFromEmployeeBook(id)+" removed.";
     }
 
-//    @GetMapping("/remove")
-//    public String removeFromEmployeeList(@RequestParam("id") Integer id) {
-//        return employeeListService.removeFromEmployeeBook(id);
-//    }
-//
-//
-//    @GetMapping("/find")
-//    public String findInEmployeeList(@RequestParam("id") Integer id) {
-//        return employeeListService.findInEmployeeBook(id);
-//    }
-//
+
+    @GetMapping("/find")
+    public String findInEmployeeList(@RequestParam("id") Integer id) {
+        return "EMPLOYEE: ID"+id+" "+employeeMapService.findInEmployeeBook(id);
+    }
+
     @GetMapping("/printList")
     public Map<Integer, Employee> getEmployeeBook() {
         return employeeMapService.getEmployeeBook();
+
     }
 
 }

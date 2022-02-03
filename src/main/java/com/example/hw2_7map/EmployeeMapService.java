@@ -4,12 +4,12 @@ import java.util.Map;
 
 public interface EmployeeMapService {
 
-    Employee addToEmployeeBook(Integer id, Employee firstName, Employee lastName);
+    Employee addToEmployeeBook(Integer id, String firstName, String lastName);
 
-//    String removeFromEmployeeBook(Integer id);
-//
-//    String findInEmployeeBook(Integer id);
+    Employee removeFromEmployeeBook(Integer id);
 
-    Map<Integer, Employee> getEmployeeBook();
+    Employee findInEmployeeBook(Integer id);
+
+    Map<Integer,Employee> getEmployeeBook();
 
 }

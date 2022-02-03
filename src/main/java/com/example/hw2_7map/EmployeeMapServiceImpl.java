@@ -14,43 +14,39 @@ public class EmployeeMapServiceImpl implements EmployeeMapService {
         employeeBook = new HashMap<>();
     }
 
-    @Override
-    public Employee addToEmployeeBook(Integer id, Employee firstName, Employee lastName) {
+    public Employee addToEmployeeBook(Integer id, String firstName, String lastName) {
         Employee newEmployee = new Employee(firstName, lastName);
         if (employeeBook.containsKey(id)) {
             throw new EmployeeAlreadyExistsException("Employee with ID " + id + " already exists!");
-        } else if (employeeBook.containsValue(newEmployee)) {
-            throw new EmployeeAlreadyExistsException("Employee " + newEmployee + " already exists!");
         }
         employeeBook.put(id, newEmployee);
-        //  return ("Employee: ID " + id + ", " + newEmployee + " successfully added");
         return newEmployee;
     }
 
 
-    //    @Override
-//    public String removeFromEmployeeBook(Integer id) {
-//
-//        if (employeeBook.containsKey(id)) {
-//            String deletedEmployee = employeeBook.remove(id);
-//            return "Employee " + deletedEmployee + " removed.";
-//        }
-//        throw new EmployeeDoesNotExistException("Employee does not exist!");
-//    }
-//
-//    @Override
-//    public String findInEmployeeBook(Integer id) {
-//        if (employeeBook.containsKey(id)) {
-//            String foundEmployee = employeeBook.get(id);
-//            return "EMPLOYEE " + foundEmployee + " is in the list.";
-//        }
-//        throw new EmployeeDoesNotExistException("Employee with ID: " + id + " does not exist!");
-//    }
-//
+    @Override
+    public Employee removeFromEmployeeBook(Integer id) {
+
+        if (employeeBook.containsKey(id)) {
+            Employee deletedEmployee = employeeBook.remove(id);
+            return deletedEmployee;
+        }
+        throw new EmployeeDoesNotExistException("Employee does not exist!");
+    }
+
+    @Override
+    public Employee findInEmployeeBook(Integer id) {
+        if (employeeBook.containsKey(id)) {
+            Employee foundEmployee = employeeBook.get(id);
+            return foundEmployee;
+        }
+        throw new EmployeeDoesNotExistException("Employee with ID: " + id + " does not exist!");
+    }
+
     @Override
     public Map<Integer, Employee> getEmployeeBook() {
         if (employeeBook.isEmpty()) {
-            throw new EmployeeBookIsEmptyException("EMPLOYEE LIST IS EMPTY!");
+            throw new EmployeeBookIsEmptyException("EMPLOYEE BOOK IS EMPTY!");
         }
         return employeeBook;
     }
